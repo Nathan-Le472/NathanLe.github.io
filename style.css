@@ -262,11 +262,21 @@ nav ul li a:hover::after{
     transform: scale(1.2) translateY(-5px);
 }
 
+.social-icon {
+    position: relative;
+    z-index: 10;
+}
+
+.social-icon a {
+    display: inline-block;
+    position: relative;
+}
+
+
 .button{
     display:inline-block;
     padding: 14px 60px;
     text-decoration: none;
-    border-color: #ff004f;
     background: #ff004f;
     color: #fff;
     border-radius: 6px;
@@ -275,11 +285,12 @@ nav ul li a:hover::after{
     transition: all 0.5s ease;
     cursor: pointer;
     margin-top: 30px;
+    border: none;
+    outline: none;
 }
 
 .button:hover{
     background-color: #b5023b;
-    border-color: #b5023b;
 }
 
 .contact-right form{
