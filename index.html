@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+
+<!-- Header -->
+<div id="header">
+    <div class="container">
+        <nav>
+            <img src="images/logo.png" class="logo">
+            <ul>
+                <li><a href="#header">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-text">
+            <p>Software Engineer</p>
+            <h1>Hi, I'm <span>Nathan Le</span>!</h1>
+        </div>
+    </div>
+</div>
+
+<!-- About me -->
+<div id="about">
+    <div class="container">
+        <div class = "row">
+            <div class="about-col-1">
+                <img src="images/user.png">
+            </div>
+            <div class="about-col-2">
+                <h1 class="sub-title">About Me</h1>
+                <p class="about-text">About me text here... Will write later</p>
+
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                    <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                    <p class="tab-links" onclick="opentab('education')">Education</p>
+                </div>
+                <div class="tab-contents active-tab" id="skills">
+                    <ul>
+                        <li><span>Bullet 1</span><br>Blah blah blah blah blah</li>
+                        <li><span>Bullet 2</span><br>Blah blah blah blah blah</li>
+                        <li><span>Bullet 3</span><br>Blah blah blah blah blah</li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="experience">
+                    <ul>
+                        <li><span>Bullet 1</span><br>Blah blah blah blah blah</li>
+                        <li><span>Bullet 2</span><br>Blah blah blah blah blah</li>
+                        <li><span>Bullet 3</span><br>Blah blah blah blah blah</li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="education">
+                    <ul>
+                        <li><span>Bullet 1</span><br>Blah blah blah blah blah</li>
+                        <li><span>Bullet 2</span><br>Blah blah blah blah blah</li>
+                        <li><span>Bullet 3</span><br>Blah blah blah blah blah</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Projects -->
+<div id="projects">
+    <div class="container">
+        <h1 class="sub-title">My Projects</h1>
+        <div class="project-list">
+            <div>
+                <img src="images/code_logo.png" class="code_logo">
+                <h2>Project 1</h2>
+                <p>Project 1 description<br>.<br>.<br>.<br>.</p>
+                <a href="#">Learn more</a>
+            </div>
+            <div>
+                <img src="images/crop_logo.png" class="crop_logo">
+                <h2>Project 2</h2>
+                <p>Project 2 description</p>
+                <a href="#">Learn more</a>
+            </div>
+            <div>
+                <img src="images/android_logo.png" class="android_logo">
+                <h2>Project 3</h2>
+                <p>Project 3 description</p>
+                <a href="#">Learn more</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact -->
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Contact Me</h1>
+                <p class="email-container"><img src="images/paper_plane_logo2.png">nathan.le.0326@gmail.com</p>
+                <p class="phone-container"><img src="images/phone_logo.png">(703) 996-6036</p>
+                <div class="social-icon">
+                    <a href="https://www.linkedin.com/in/nathanle0326/" target="_blank">
+                        <img src="images/linkedin_logo.png">
+                    </a>
+                    <a href="https://github.com/" target="_blank">
+                        <img src="images/github_logo.png">
+                    </a>
+                </div>
+                <a href="NathanLe_Resume.pdf" download class="button">Download Resume</a>
+            </div>
+            <div class="contact-right">
+                <form onsubmit="sendEmail(event)">
+                    <input type="text" name="from_name" placeholder="Your Name" required>
+                    <input type="email" name="reply_to" placeholder="Your Email" required>
+                    <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="button">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Javascript for tabs in about me-->
+<script>
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+
+    function opentab(tabname) {
+        for(tablink of tablinks) {
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents) {
+            tabcontent.classList.remove("active-tab");
+        }
+
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+
+
+    function sendEmail(event) {
+        event.preventDefault();
+        
+        emailjs.sendForm('service_b73ie1l', 'template_bq9qltf', event.target, '_6VFWghXhA5--Pe89')
+            .then(function() {
+                showNotification('Message sent successfully!', 'success');
+                event.target.reset();
+            }, function(error) {
+                showNotification('Failed to send message. Please try again.', 'error');
+                console.log('Error:', error);
+            });
+    }
+
+
+    function showNotification(message, type) {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 300);
+    
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 3000);
+}
+</script>
+
+</body>
+</html>
